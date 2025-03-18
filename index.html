@@ -30,31 +30,63 @@
             font-size: 1.2rem;
             line-height: 1.6;
         }
-        .links a {
-            display: inline-block;
-            margin: 10px;
+        .tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        .tab-button {
+            margin: 5px;
             padding: 12px 20px;
             font-size: 1rem;
             text-decoration: none;
             color: white;
-            background-color: #0071e3;
+            background-color: #444;
             border-radius: 8px;
+            cursor: pointer;
             transition: background 0.3s ease;
+            border: none;
         }
-        .links a:hover {
-            background-color: #005bb5;
+        .tab-button:hover {
+            background-color: #222;
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
         }
     </style>
+    <script>
+        function openTab(tabName) {
+            var i, tabcontent;
+            tabcontent = document.getElementsByClassName("tab-content");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            document.getElementById(tabName).style.display = "block";
+        }
+    </script>
 </head>
 <body>
     <div class="container">
         <h1>Welcome to My Website</h1>
         <p>Hi, I'm <strong>Murat Doğmaz</strong>. This is my personal portfolio hosted on GitHub Pages.</p>
-        <div class="links">
-            <a href="https://github.com/mtdz357/MuratDogmaz/blob/main/Hw1-Q2.c">Hw1-Q2.c</a>
-            <a href="https://github.com/mtdz357/MuratDogmaz/blob/main/Hw1-Q3.c">Hw1-Q3.c</a>
-            <a href="https://github.com/mtdz357/MuratDogmaz/blob/main/Hw1-Q4-a.c">Hw1-Q4a.c</a>
-            <a href="https://github.com/mtdz357/MuratDogmaz/blob/main/Hw1-Q4-b.c">Hw1-Q4b.c</a>
+        
+        <div class="tabs">
+            <button class="tab-button" onclick="openTab('hw1')">Hw1</button>
+            <button class="tab-button" onclick="openTab('hw2')">Hw2</button>
+        </div>
+        
+        <div id="hw1" class="tab-content" style="display: none;">
+            <p><a href="https://github.com/mtdz357/MuratDogmaz/blob/main/Hw1-Q2.c">Hw1-Q2.c</a></p>
+            <p><a href="https://github.com/mtdz357/MuratDogmaz/blob/main/Hw1-Q3.c">Hw1-Q3.c</a></p>
+            <p><a href="https://github.com/mtdz357/MuratDogmaz/blob/main/Hw1-Q4-a.c">Hw1-Q4a.c</a></p>
+            <p><a href="https://github.com/mtdz357/MuratDogmaz/blob/main/Hw1-Q4-b.c">Hw1-Q4b.c</a></p>
+        </div>
+        
+        <div id="hw2" class="tab-content" style="display: none;">
+            <p>Homework 2 content will be added here.</p>
         </div>
     </div>
 </body>
