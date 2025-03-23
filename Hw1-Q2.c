@@ -3,9 +3,9 @@
 /* function main begins program execution */
 int main( void )
 {
-   int integer1; /* first number to be input by user  */
-   int integer2; /* second number to be input by user */
-   int sum;      /* variable in which sum will be stored */ 
+   int integer1; /* integer 1 den sonra ; konulmalı  */
+   int integer2; /* integer 2 den sonra ; konulmalı*/
+   int sum;      /*variable should be sum not x*/ 
 
    printf( "Enter first integer\n "); /* prompt */
    scanf( "%d", &integer1 );        /* read an integer */
