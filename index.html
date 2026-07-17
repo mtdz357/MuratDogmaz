@@ -32,6 +32,7 @@
         }
         .tabs {
             display: flex;
+            flex-wrap: wrap;
             justify-content: center;
             margin-bottom: 20px;
         }
@@ -50,21 +51,60 @@
         .tab-button:hover {
             background-color: #222;
         }
+        .tab-button.active {
+            background-color: #0a66c2;
+        }
         .tab-content {
             display: none;
+            text-align: left;
         }
         .tab-content.active {
             display: block;
         }
+        .repo-list {
+            list-style: none;
+            padding: 0;
+        }
+        .repo-card {
+            display: block;
+            padding: 14px 18px;
+            margin-bottom: 10px;
+            background: #f9f9fb;
+            border: 1px solid #e2e2e6;
+            border-radius: 8px;
+            text-decoration: none;
+            color: #333;
+            transition: box-shadow 0.2s ease, transform 0.2s ease;
+        }
+        .repo-card:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            transform: translateY(-2px);
+        }
+        .repo-card strong {
+            display: block;
+            font-size: 1.05rem;
+            color: #0a66c2;
+        }
+        .repo-card span {
+            display: block;
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 4px;
+        }
     </style>
     <script>
-        function openTab(tabName) {
-            var i, tabcontent;
+        function openTab(tabName, btn) {
+            var i, tabcontent, tabbuttons;
             tabcontent = document.getElementsByClassName("tab-content");
             for (i = 0; i < tabcontent.length; i++) {
-                tabcontent[i].style.display = "none";
+                tabcontent[i].classList.remove("active");
             }
-            document.getElementById(tabName).style.display = "block";
+            tabbuttons = document.getElementsByClassName("tab-button");
+            for (i = 0; i < tabbuttons.length; i++) {
+                tabbuttons[i].classList.remove("active");
+            }
+            document.getElementById(tabName).classList.add("active");
+            btn.classList.add("active");
         }
     </script>
 </head>
@@ -72,21 +112,48 @@
     <div class="container">
         <h1>Welcome to My Website</h1>
         <p>Hi, I'm <strong>Murat Doğmaz</strong>. This is my personal portfolio hosted on GitHub Pages.</p>
-        
+
         <div class="tabs">
-            <button class="tab-button" onclick="openTab('hw1')">Hw1</button>
-            <button class="tab-button" onclick="openTab('hw2')">Hw2</button>
+            <button class="tab-button active" onclick="openTab('hw1', this)">Hw1</button>
+            <button class="tab-button" onclick="openTab('hw2', this)">Hw2</button>
+            <button class="tab-button" onclick="openTab('repos', this)">Repositories</button>
         </div>
-        
-        <div id="hw1" class="tab-content" style="display: none;">
-            <p><a href="https://github.com/mtdz357/MuratDogmaz/blob/main/Hw1-Q2.c">Hw1-Q2.c</a></p>
-            <p><a href="https://github.com/mtdz357/MuratDogmaz/blob/main/Hw1-Q3.c">Hw1-Q3.c</a></p>
-            <p><a href="https://github.com/mtdz357/MuratDogmaz/blob/main/Hw1-Q4-a.c">Hw1-Q4a.c</a></p>
-            <p><a href="https://github.com/mtdz357/MuratDogmaz/blob/main/Hw1-Q4-b.c">Hw1-Q4b.c</a></p>
+
+        <div id="hw1" class="tab-content active">
+            <ul class="repo-list">
+                <li><a class="repo-card" href="https://github.com/mtdz357/MuratDogmaz/blob/main/Hw1-Q2.c" target="_blank">Hw1-Q2.c</a></li>
+                <li><a class="repo-card" href="https://github.com/mtdz357/MuratDogmaz/blob/main/Hw1-Q3.c" target="_blank">Hw1-Q3.c</a></li>
+                <li><a class="repo-card" href="https://github.com/mtdz357/MuratDogmaz/blob/main/Hw1-Q4-a.c" target="_blank">Hw1-Q4a.c</a></li>
+                <li><a class="repo-card" href="https://github.com/mtdz357/MuratDogmaz/blob/main/Hw1-Q4-b.c" target="_blank">Hw1-Q4b.c</a></li>
+            </ul>
         </div>
-        
-        <div id="hw2" class="tab-content" style="display: none;">
+
+        <div id="hw2" class="tab-content">
             <p>Homework 2 content will be added here.</p>
+        </div>
+
+        <!-- 
+          REPOSITORIES TAB
+          Add one <li> block per repo. Just copy-paste the template below
+          and fill in the link, name, and description.
+
+          <li>
+            <a class="repo-card" href="REPO_URL" target="_blank">
+              <strong>Repo Name</strong>
+              <span>Short description of the project</span>
+            </a>
+          </li>
+        -->
+        <div id="repos" class="tab-content">
+            <ul class="repo-list">
+                <li>
+                    <a class="repo-card" href="https://github.com/mtdz357/MuratDogmaz" target="_blank">
+                        <strong>MuratDogmaz</strong>
+                        <span>Main portfolio & coursework repository</span>
+                    </a>
+                </li>
+                <!-- Add more repo-card entries here -->
+            </ul>
         </div>
     </div>
 </body>
