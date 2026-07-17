@@ -1,160 +1,309 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="tr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Murat Doğmaz - Portfolio</title>
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f5f5f7;
-            color: #333;
-            text-align: center;
-        }
-        .container {
-            width: 90%;
-            max-width: 800px;
-            margin: 50px auto;
-            padding: 40px;
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        }
-        h1 {
-            font-size: 2.5rem;
-            color: #000;
-        }
-        p {
-            font-size: 1.2rem;
-            line-height: 1.6;
-        }
-        .tabs {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            margin-bottom: 20px;
-        }
-        .tab-button {
-            margin: 5px;
-            padding: 12px 20px;
-            font-size: 1rem;
-            text-decoration: none;
-            color: white;
-            background-color: #444;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: background 0.3s ease;
-            border: none;
-        }
-        .tab-button:hover {
-            background-color: #222;
-        }
-        .tab-button.active {
-            background-color: #0a66c2;
-        }
-        .tab-content {
-            display: none;
-            text-align: left;
-        }
-        .tab-content.active {
-            display: block;
-        }
-        .repo-list {
-            list-style: none;
-            padding: 0;
-        }
-        .repo-card {
-            display: block;
-            padding: 14px 18px;
-            margin-bottom: 10px;
-            background: #f9f9fb;
-            border: 1px solid #e2e2e6;
-            border-radius: 8px;
-            text-decoration: none;
-            color: #333;
-            transition: box-shadow 0.2s ease, transform 0.2s ease;
-        }
-        .repo-card:hover {
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-            transform: translateY(-2px);
-        }
-        .repo-card strong {
-            display: block;
-            font-size: 1.05rem;
-            color: #0a66c2;
-        }
-        .repo-card span {
-            display: block;
-            font-size: 0.9rem;
-            color: #666;
-            margin-top: 4px;
-        }
-    </style>
-    <script>
-        function openTab(tabName, btn) {
-            var i, tabcontent, tabbuttons;
-            tabcontent = document.getElementsByClassName("tab-content");
-            for (i = 0; i < tabcontent.length; i++) {
-                tabcontent[i].classList.remove("active");
-            }
-            tabbuttons = document.getElementsByClassName("tab-button");
-            for (i = 0; i < tabbuttons.length; i++) {
-                tabbuttons[i].classList.remove("active");
-            }
-            document.getElementById(tabName).classList.add("active");
-            btn.classList.add("active");
-        }
-    </script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Murat Doğmaz — Makine Öğrenmesi & Bilgisayarlı Görü</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #0E1520;
+    --bg-alt: #111A26;
+    --surface: #16202D;
+    --surface-hover: #1B2735;
+    --border: #263242;
+    --text: #E8EDF3;
+    --text-muted: #8CA0B5;
+    --text-faint: #5C7086;
+    --accent: #5FD8C7;
+    --accent-soft: rgba(95,216,199,0.12);
+    --amber: #F2B84B;
+    --amber-soft: rgba(242,184,75,0.12);
+    --mono: 'IBM Plex Mono', monospace;
+    --sans: 'IBM Plex Sans', sans-serif;
+    --radius: 10px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:
+      radial-gradient(circle at 1px 1px, rgba(255,255,255,0.035) 1px, transparent 0) 0 0/28px 28px,
+      var(--bg);
+    color:var(--text);
+    font-family:var(--sans);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;}
+  .wrap{max-width:920px;margin:0 auto;padding:0 24px;}
+
+  nav{
+    position:sticky;top:0;z-index:50;
+    background:rgba(14,21,32,0.85);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--border);
+  }
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;height:60px;}
+  .brand{font-family:var(--mono);font-weight:600;font-size:0.95rem;letter-spacing:0.02em;}
+  .brand span{color:var(--accent);}
+  .nav-links{display:flex;gap:28px;list-style:none;margin:0;padding:0;}
+  .nav-links a{
+    font-family:var(--mono);font-size:0.82rem;color:var(--text-muted);
+    text-decoration:none;transition:color .2s ease;
+  }
+  .nav-links a:hover{color:var(--accent);}
+  @media (max-width:640px){ .nav-links{gap:16px;} .nav-links a{font-size:0.72rem;} }
+
+  header.hero{padding:90px 0 70px;}
+  .eyebrow{
+    font-family:var(--mono);font-size:0.78rem;color:var(--accent);
+    letter-spacing:0.08em;text-transform:uppercase;margin-bottom:18px;
+  }
+  h1{
+    font-family:var(--mono);font-size:clamp(2rem,5vw,2.8rem);
+    font-weight:700;margin:0 0 14px;letter-spacing:-0.01em;
+  }
+  .hero p.lede{color:var(--text-muted);font-size:1.08rem;max-width:540px;margin:0 0 34px;}
+
+  .terminal{
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    overflow:hidden;
+    box-shadow:0 20px 60px -20px rgba(0,0,0,0.5);
+  }
+  .terminal-bar{
+    display:flex;align-items:center;gap:8px;
+    padding:11px 14px;border-bottom:1px solid var(--border);
+    background:var(--bg-alt);
+  }
+  .dot{width:10px;height:10px;border-radius:50%;background:var(--border);}
+  .dot:nth-child(1){background:#E4676B;}
+  .dot:nth-child(2){background:#E8C062;}
+  .dot:nth-child(3){background:#68C77F;}
+  .terminal-title{
+    margin-left:8px;font-family:var(--mono);font-size:0.75rem;color:var(--text-faint);
+  }
+  .terminal-body{
+    padding:22px 24px 26px;font-family:var(--mono);font-size:0.92rem;
+  }
+  .terminal-body .line{margin:0 0 6px;color:var(--text-muted);}
+  .terminal-body .prompt{color:var(--accent);}
+  .terminal-body .out{color:var(--text);}
+  .terminal-body .out .k{color:var(--amber);}
+  #cursor{display:inline-block;width:8px;height:1.1em;background:var(--accent);vertical-align:text-bottom;animation:blink 1s step-start infinite;}
+  @keyframes blink{50%{opacity:0;}}
+  @media (prefers-reduced-motion: reduce){ #cursor{animation:none;} }
+
+  section{padding:64px 0;border-top:1px solid var(--border);}
+  .section-head{display:flex;align-items:baseline;gap:14px;margin-bottom:34px;}
+  .section-num{font-family:var(--mono);color:var(--text-faint);font-size:0.85rem;}
+  h2{font-family:var(--mono);font-size:1.5rem;margin:0;font-weight:600;}
+  .section-sub{color:var(--text-muted);max-width:600px;margin:-20px 0 34px;font-size:0.98rem;}
+
+  .about-grid{display:grid;grid-template-columns:1.1fr 0.9fr;gap:40px;}
+  @media (max-width:720px){ .about-grid{grid-template-columns:1fr;} }
+  .about-grid p{color:var(--text-muted);margin:0 0 16px;}
+  .imports{
+    background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
+    padding:20px 22px;font-family:var(--mono);font-size:0.86rem;
+  }
+  .imports .comment{color:var(--text-faint);margin-bottom:10px;}
+  .imports .row{margin:0 0 7px;white-space:nowrap;overflow-x:auto;}
+  .imports .kw{color:#C792EA;}
+  .imports .lib{color:var(--accent);}
+  .imports .as{color:#C792EA;}
+  .imports .alias{color:var(--amber);}
+
+  .cards{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+  @media (max-width:720px){ .cards{grid-template-columns:1fr;} }
+  .card{
+    background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
+    padding:22px;display:flex;flex-direction:column;transition:border-color .2s ease, transform .2s ease;
+  }
+  .card:hover{border-color:var(--accent);transform:translateY(-3px);}
+  .card-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px;}
+  .card h3{font-family:var(--mono);font-size:1.05rem;margin:0;font-weight:600;}
+  .lang-badge{
+    font-family:var(--mono);font-size:0.7rem;color:var(--amber);
+    background:var(--amber-soft);border-radius:20px;padding:3px 10px;white-space:nowrap;
+  }
+  .card p{color:var(--text-muted);font-size:0.92rem;margin:0 0 16px;flex-grow:1;}
+  .tag-row{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:18px;}
+  .tag{
+    font-family:var(--mono);font-size:0.72rem;color:var(--text-muted);
+    border:1px solid var(--border);border-radius:6px;padding:3px 8px;
+  }
+  .card-link{
+    font-family:var(--mono);font-size:0.85rem;color:var(--accent);text-decoration:none;
+    display:inline-flex;align-items:center;gap:6px;
+  }
+  .card-link:hover{text-decoration:underline;}
+
+  .hw-table{width:100%;border-collapse:collapse;font-family:var(--mono);font-size:0.88rem;}
+  .hw-table th{
+    text-align:left;color:var(--text-faint);font-weight:500;font-size:0.75rem;
+    text-transform:uppercase;letter-spacing:0.06em;padding:0 14px 10px;border-bottom:1px solid var(--border);
+  }
+  .hw-table td{padding:13px 14px;border-bottom:1px solid var(--border);}
+  .hw-table tr:last-child td{border-bottom:none;}
+  .hw-table tr:hover td{background:var(--surface-hover);}
+  .hw-table a{color:var(--text);text-decoration:none;}
+  .hw-table a:hover{color:var(--accent);}
+  .badge-lang{font-size:0.72rem;color:var(--text-muted);}
+  .hw-note{
+    margin-top:16px;font-size:0.85rem;color:var(--text-faint);font-family:var(--mono);
+  }
+
+  footer{padding:56px 0 50px;}
+  .contact-grid{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:24px;}
+  .contact-links{display:flex;gap:14px;flex-wrap:wrap;}
+  .btn{
+    font-family:var(--mono);font-size:0.86rem;color:var(--text);
+    border:1px solid var(--border);border-radius:8px;padding:10px 18px;
+    text-decoration:none;transition:all .2s ease;
+  }
+  .btn:hover{border-color:var(--accent);color:var(--accent);}
+  .btn.primary{background:var(--accent-soft);border-color:var(--accent);color:var(--accent);}
+  .footer-meta{color:var(--text-faint);font-family:var(--mono);font-size:0.78rem;}
+</style>
 </head>
 <body>
-    <div class="container">
-        <h1>Welcome to My Website</h1>
-        <p>Hi, I'm <strong>Murat Doğmaz</strong>. This is my personal portfolio hosted on GitHub Pages.</p>
 
-        <div class="tabs">
-            <button class="tab-button active" onclick="openTab('hw1', this)">Hw1</button>
-            <button class="tab-button" onclick="openTab('hw2', this)">Hw2</button>
-            <button class="tab-button" onclick="openTab('repos', this)">Repositories</button>
-        </div>
+<nav>
+  <div class="wrap">
+    <div class="brand">murat<span>.dogmaz</span></div>
+    <ul class="nav-links">
+      <li><a href="#hakkimda">Hakkımda</a></li>
+      <li><a href="#projeler">Projeler</a></li>
+      <li><a href="#odevler">Ödevler</a></li>
+      <li><a href="#iletisim">İletişim</a></li>
+    </ul>
+  </div>
+</nav>
 
-        <div id="hw1" class="tab-content active">
-            <ul class="repo-list">
-                <li><a class="repo-card" href="https://github.com/mtdz357/MuratDogmaz/blob/main/Hw1-Q2.c" target="_blank">Hw1-Q2.c</a></li>
-                <li><a class="repo-card" href="https://github.com/mtdz357/MuratDogmaz/blob/main/Hw1-Q3.c" target="_blank">Hw1-Q3.c</a></li>
-                <li><a class="repo-card" href="https://github.com/mtdz357/MuratDogmaz/blob/main/Hw1-Q4-a.c" target="_blank">Hw1-Q4a.c</a></li>
-                <li><a class="repo-card" href="https://github.com/mtdz357/MuratDogmaz/blob/main/Hw1-Q4-b.c" target="_blank">Hw1-Q4b.c</a></li>
-            </ul>
-        </div>
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow">Ankara, Türkiye</div>
+    <h1>Murat Doğmaz</h1>
+    <p class="lede">Makine öğrenmesi ve bilgisayarlı görü üzerine çalışan, klasik ML algoritmalarından derin öğrenmeye uzanan bir öğrenme yolculuğunda ilerleyen geliştirici.</p>
 
-        <div id="hw2" class="tab-content">
-            <p>Homework 2 content will be added here.</p>
-        </div>
-
-        <!-- 
-          REPOSITORIES TAB
-          Add one <li> block per repo. Just copy-paste the template below
-          and fill in the link, name, and description.
-
-          <li>
-            <a class="repo-card" href="REPO_URL" target="_blank">
-              <strong>Repo Name</strong>
-              <span>Short description of the project</span>
-            </a>
-          </li>
-        -->
-        <div id="repos" class="tab-content">
-            <ul class="repo-list">
-                <li>
-                    <a class="repo-card" href="https://github.com/mtdz357/MuratDogmaz" target="_blank">
-                        <strong>MuratDogmaz</strong>
-                        <span>Main portfolio & coursework repository</span>
-                    </a>
-                </li>
-                <!-- Add more repo-card entries here -->
-            </ul>
-        </div>
+    <div class="terminal">
+      <div class="terminal-bar">
+        <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+        <span class="terminal-title">murat@portfolio ~ %</span>
+      </div>
+      <div class="terminal-body">
+        <p class="line"><span class="prompt">$</span> whoami</p>
+        <p class="line out">Murat Doğmaz — <span class="k">ML</span> & <span class="k">Computer Vision</span></p>
+        <p class="line"><span class="prompt">$</span> cat focus.txt</p>
+        <p class="line out">OpenCV, CNN mimarileri, YOLO / U-Net / Mask R-CNN, Vision Transformers</p>
+        <p class="line"><span class="prompt">$</span> status<span id="cursor"></span></p>
+      </div>
     </div>
+  </div>
+</header>
+
+<section id="hakkimda">
+  <div class="wrap">
+    <div class="section-head"><span class="section-num">01</span><h2>Hakkımda</h2></div>
+    <div class="about-grid">
+      <div>
+        <p>Python, NumPy ve Pandas ile temellenen bir veri bilimi altyapısı üzerine, doğrusal cebir ve kalkülüs bilgimi kullanarak makine öğrenmesi algoritmalarını uçtan uca uyguluyorum.</p>
+        <p>Şu anda OpenCV ve derin öğrenme etrafında kurgulanmış yoğun bir bilgisayarlı görü çalışma programını takip ediyorum — görüntü temellerinden CNN mimarilerine, nesne tespitine ve Vision Transformer'lara uzanan bir yol haritası.</p>
+      </div>
+      <div class="imports">
+        <div class="comment"># skills.py</div>
+        <p class="row"><span class="kw">import</span> <span class="lib">numpy</span> <span class="as">as</span> <span class="alias">np</span></p>
+        <p class="row"><span class="kw">import</span> <span class="lib">pandas</span> <span class="as">as</span> <span class="alias">pd</span></p>
+        <p class="row"><span class="kw">import</span> <span class="lib">cv2</span></p>
+        <p class="row"><span class="kw">import</span> <span class="lib">sklearn</span></p>
+        <p class="row"><span class="kw">from</span> <span class="lib">torch</span> <span class="kw">import</span> <span class="alias">nn</span></p>
+        <p class="row"><span class="kw">import</span> <span class="lib">matplotlib.pyplot</span> <span class="as">as</span> <span class="alias">plt</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projeler">
+  <div class="wrap">
+    <div class="section-head"><span class="section-num">02</span><h2>Projeler</h2></div>
+    <p class="section-sub">GitHub üzerinde yayınladığım makine öğrenmesi çalışmaları.</p>
+    <div class="cards">
+      <div class="card">
+        <div class="card-top">
+          <h3>ML_Practice</h3>
+          <span class="lang-badge">Python</span>
+        </div>
+        <p>Klasik makine öğrenmesi algoritmalarının sıfırdan uygulamalarını içeren geniş kapsamlı bir pratik deposu — denetimli ve denetimsiz öğrenmeden model değerlendirmeye kadar.</p>
+        <div class="tag-row">
+          <span class="tag">KNN</span><span class="tag">Decision Tree</span><span class="tag">Random Forest</span>
+          <span class="tag">SVM</span><span class="tag">K-Means</span><span class="tag">PCA / LDA</span>
+          <span class="tag">Cross-Validation</span>
+        </div>
+        <a class="card-link" href="https://github.com/mtdz357/ML_Practice" target="_blank">Repoyu görüntüle →</a>
+      </div>
+
+      <div class="card">
+        <div class="card-top">
+          <h3>Titanic_ML_Classification</h3>
+          <span class="lang-badge">Python</span>
+        </div>
+        <p>Titanic veri seti üzerinde uçtan uca bir sınıflandırma çalışması — veri ön işleme, model kurulumu ve değerlendirme adımlarını düzenli bir proje yapısında bir araya getiriyor.</p>
+        <div class="tag-row">
+          <span class="tag">Data Preprocessing</span><span class="tag">Classification</span><span class="tag">scikit-learn</span>
+        </div>
+        <a class="card-link" href="https://github.com/mtdz357/Titanic_ML_Classificiation" target="_blank">Repoyu görüntüle →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="odevler">
+  <div class="wrap">
+    <div class="section-head"><span class="section-num">03</span><h2>Ödevler</h2></div>
+    <p class="section-sub">C programlama dersi kapsamında tamamlanan ödev çözümleri.</p>
+    <table class="hw-table">
+      <thead>
+        <tr><th>Dosya</th><th>Dil</th><th></th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Hw-Q2</td><td class="badge-lang">C</td>
+          <td><a href="https://github.com/mtdz357/MuratDogmaz/blob/main/Hw1-Q2.c" target="_blank">Görüntüle →</a></td>
+        </tr>
+        <tr>
+          <td>Hw-Q3</td><td class="badge-lang">C</td>
+          <td><a href="https://github.com/mtdz357/MuratDogmaz/blob/main/Hw1-Q3.c" target="_blank">Görüntüle →</a></td>
+        </tr>
+        <tr>
+          <td>Hw-Q4a</td><td class="badge-lang">C</td>
+          <td><a href="https://github.com/mtdz357/MuratDogmaz/blob/main/Hw1-Q4-a.c" target="_blank">Görüntüle →</a></td>
+        </tr>
+        <tr>
+          <td>Hw-Q4b</td><td class="badge-lang">C</td>
+          <td><a href="https://github.com/mtdz357/MuratDogmaz/blob/main/Hw1-Q4-b.c" target="_blank">Görüntüle →</a></td>
+        </tr>
+      </tbody>
+    </table>
+    <p class="hw-note"># yeni ödevler eklendikçe bu tabloya yeni satır olarak dahil edilecek</p>
+  </div>
+</section>
+
+<footer id="iletisim">
+  <div class="wrap">
+    <div class="section-head"><span class="section-num">04</span><h2>İletişim</h2></div>
+    <div class="contact-grid">
+      <div class="footer-meta">Ankara, Türkiye</div>
+      <div class="contact-links">
+        <a class="btn primary" href="https://github.com/mtdz357" target="_blank">GitHub</a>
+        <a class="btn" href="https://www.linkedin.com/in/murat-doğmaz-504b27291" target="_blank">LinkedIn</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
 </body>
 </html>
