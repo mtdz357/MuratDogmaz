@@ -59,7 +59,10 @@
   header.hero{padding:90px 0 70px;}
   .eyebrow{
     font-family:var(--mono);font-size:0.78rem;color:var(--accent);
-    letter-spacing:0.08em;text-transform:uppercase;margin-bottom:18px;
+    letter-spacing:0.08em;text-transform:uppercase;margin-bottom:8px;
+  }
+  .eyebrow.secondary{
+    color:var(--text-faint);text-transform:none;letter-spacing:0.02em;margin-bottom:18px;
   }
   h1{
     font-family:var(--mono);font-size:clamp(2rem,5vw,2.8rem);
@@ -106,6 +109,13 @@
   .about-grid{display:grid;grid-template-columns:1.1fr 0.9fr;gap:40px;}
   @media (max-width:720px){ .about-grid{grid-template-columns:1fr;} }
   .about-grid p{color:var(--text-muted);margin:0 0 16px;}
+  .edu-badge{
+    display:inline-flex;align-items:center;gap:10px;
+    background:var(--accent-soft);border:1px solid var(--border);
+    border-radius:8px;padding:10px 14px;margin:0 0 20px;
+    font-family:var(--mono);font-size:0.85rem;color:var(--text);
+  }
+  .edu-badge .dot-sep{color:var(--accent);}
   .imports{
     background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
     padding:20px 22px;font-family:var(--mono);font-size:0.86rem;
@@ -187,6 +197,7 @@
 <header class="hero">
   <div class="wrap">
     <div class="eyebrow">Ankara, Türkiye</div>
+    <div class="eyebrow secondary">Hacettepe Üniversitesi <span class="dot-sep">·</span> Elektrik-Elektronik Mühendisliği <span class="dot-sep">·</span> 2. Sınıf</div>
     <h1>Murat Doğmaz</h1>
     <p class="lede">Makine öğrenmesi ve bilgisayarlı görü üzerine çalışan, klasik ML algoritmalarından derin öğrenmeye uzanan bir öğrenme yolculuğunda ilerleyen geliştirici.</p>
 
@@ -198,6 +209,8 @@
       <div class="terminal-body">
         <p class="line"><span class="prompt">$</span> whoami</p>
         <p class="line out">Murat Doğmaz — <span class="k">ML</span> & <span class="k">Computer Vision</span></p>
+        <p class="line"><span class="prompt">$</span> cat egitim.txt</p>
+        <p class="line out">Hacettepe Üniversitesi — Elektrik-Elektronik Mühendisliği, 2. Sınıf</p>
         <p class="line"><span class="prompt">$</span> cat focus.txt</p>
         <p class="line out">OpenCV, CNN mimarileri, YOLO / U-Net / Mask R-CNN, Vision Transformers</p>
         <p class="line"><span class="prompt">$</span> status<span id="cursor"></span></p>
@@ -211,6 +224,7 @@
     <div class="section-head"><span class="section-num">01</span><h2>Hakkımda</h2></div>
     <div class="about-grid">
       <div>
+        <div class="edu-badge">🎓 Hacettepe Üniversitesi <span class="dot-sep">·</span> EEM <span class="dot-sep">·</span> 2. Sınıf Öğrencisi</div>
         <p>Python, NumPy ve Pandas ile temellenen bir veri bilimi altyapısı üzerine, doğrusal cebir ve kalkülüs bilgimi kullanarak makine öğrenmesi algoritmalarını uçtan uca uyguluyorum.</p>
         <p>Şu anda OpenCV ve derin öğrenme etrafında kurgulanmış yoğun bir bilgisayarlı görü çalışma programını takip ediyorum — görüntü temellerinden CNN mimarilerine, nesne tespitine ve Vision Transformer'lara uzanan bir yol haritası.</p>
       </div>
